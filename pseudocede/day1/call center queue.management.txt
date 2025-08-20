@@ -1,0 +1,72 @@
+// A simple Customer class
+class Customer {
+    String name;
+    String type; // "emergency" or "normal"
+
+    Customer(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+}
+
+// Call Center Queue Manager
+class CallCenter {
+    Queue<Customer> emergencyQueue; // high priority
+    Queue<Customer> normalQueue;    // low priority
+
+    // Constructor
+    CallCenter() {
+        emergencyQueue = new LinkedList<>();
+        normalQueue = new LinkedList<>();
+    }
+
+    // Add a customer into correct queue
+    void addCustomer(String name, String type) {
+        Customer c = new Customer(name, type);
+        if (type.equals("emergency")) {
+            emergencyQueue.add(c);
+        } else {
+            normalQueue.add(c);
+        }
+        System.out.println(name + " added to " + type + " queue");
+    }
+
+    // Serve next customer
+    void serveCustomer() {
+        if (!emergencyQueue.isEmpty()) {
+            Customer c = emergencyQueue.poll();
+            System.out.println("Serving emergency customer: " + c.name);
+        } else if (!normalQueue.isEmpty()) {
+            Customer c = normalQueue.poll();
+            System.out.println("Serving normal customer: " + c.name);
+        } else {
+            System.out.println("No customers waiting!");
+        }
+    }
+
+    // Show pending customers
+    void showQueues() {
+        System.out.println("Emergency Queue: " + emergencyQueue.size() + " people");
+        System.out.println("Normal Queue: " + normalQueue.size() + " people");
+    }
+}
+
+// Human-style simulation
+public class CallCenterSimulation {
+    public static void main(String[] args) {
+        CallCenter center = new CallCenter();
+
+        // Customers arriving
+        center.addCustomer("Alice", "normal");
+        center.addCustomer("Bob", "emergency");
+        center.addCustomer("Charlie", "normal");
+        center.addCustomer("David", "emergency");
+
+        // Serving customers
+        center.serveCustomer(); // Bob first (emergency)
+        center.serveCustomer(); // David next (emergency)
+        center.serveCustomer(); // Alice next (normal)
+        center.serveCustomer(); // Charlie next (normal)
+        center.serveCustomer(); // Queue empty
+    }
+}

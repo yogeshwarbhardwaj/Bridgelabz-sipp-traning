@@ -1,0 +1,73 @@
+// Base class
+class Pet {
+    String name;
+    int age;
+
+    // Constructor
+    Pet(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    void showInfo() {
+        print("Name: " + name + ", Age: " + age);
+    }
+}
+
+// Child class Dog
+class Dog extends Pet {
+    String breed;
+
+    Dog(String name, int age, String breed) {
+        super(name, age);   // call Pet constructor
+        this.breed = breed;
+    }
+
+    void showInfo() {
+        super.showInfo();
+        print("Breed: " + breed);
+    }
+}
+
+// Child class Cat
+class Cat extends Pet {
+    String color;
+
+    Cat(String name, int age, String color) {
+        super(name, age);
+        this.color = color;
+    }
+
+    void showInfo() {
+        super.showInfo();
+        print("Color: " + color);
+    }
+}
+
+// Child class Bird
+class Bird extends Pet {
+    boolean canTalk;
+
+    Bird(String name, int age, boolean canTalk) {
+        super(name, age);
+        this.canTalk = canTalk;
+    }
+
+    void showInfo() {
+        super.showInfo();
+        if (canTalk) print("This bird can talk!");
+        else print("This bird cannot talk.");
+    }
+}
+
+// Usage Example
+main() {
+    Dog d = new Dog("Tommy", 3, "Labrador");
+    d.showInfo();
+
+    Cat c = new Cat("Kitty", 2, "White");
+    c.showInfo();
+
+    Bird b = new Bird("Mithu", 1, true);
+    b.showInfo();
+}

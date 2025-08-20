@@ -1,0 +1,35 @@
+import java.time.LocalDate;
+
+class Member {
+    String name;
+    int id;
+    LocalDate membershipDate;
+
+    Member(String name, int id, LocalDate membershipDate) {
+        this.name = name;
+        this.id = id;
+        this.membershipDate = membershipDate;
+    }
+
+    // Check validity (1 year validity)
+    boolean isMembershipValid() {
+        LocalDate expiry = membershipDate.plusYears(1);
+        LocalDate today = LocalDate.now();
+        return today.isBefore(expiry);
+    }
+
+    void showMemberInfo() {
+        print("Name: " + name + ", ID: " + id);
+        if (isMembershipValid()) {
+            print("Membership is ACTIVE");
+        } else {
+            print("Membership has EXPIRED");
+        }
+    }
+}
+
+// Usage Example
+main() {
+    Member m1 = new Member("Aarav", 101, LocalDate.of(2024, 8, 20));
+    m1.showMemberInfo();
+}

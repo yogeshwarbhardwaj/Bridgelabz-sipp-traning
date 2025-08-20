@@ -1,0 +1,61 @@
+// Imagine we are building a simple Text Editor
+class TextEditor {
+    StringBuilder text;   // to hold the current text
+    Stack<String> history; // stack to store past states of text
+
+    // Constructor
+    TextEditor() {
+        text = new StringBuilder();
+        history = new Stack<>();
+    }
+
+    // Type some new text
+    void type(String newText) {
+        // Before typing, save current state in history
+        history.push(text.toString());
+        text.append(newText);
+    }
+
+    // Delete last n characters
+    void delete(int count) {
+        // Save current state in history
+        history.push(text.toString());
+        int start = text.length() - count;
+        text.delete(start, text.length());
+    }
+
+    // Undo last operation
+    void undo() {
+        if (!history.isEmpty()) {
+            // Restore the last saved state
+            text = new StringBuilder(history.pop());
+        } else {
+            System.out.println("Nothing to undo!");
+        }
+    }
+
+    // Show current text
+    void show() {
+        System.out.println("Current Text: " + text.toString());
+    }
+}
+
+// Human-style main function
+public class UndoFeatureDemo {
+    public static void main(String[] args) {
+        TextEditor editor = new TextEditor();
+
+        editor.type("Hello");
+        editor.type(" World");
+        editor.show();   // Output: Hello World
+
+        editor.delete(6); // remove " World"
+        editor.show();   // Output: Hello
+
+        editor.undo();   // undo delete
+        editor.show();   // Output: Hello World
+
+        editor.undo();   // undo typing " World"
+        editor.show();   // Output: Hello
+    }
+}

@@ -1,0 +1,42 @@
+import java.util.*;
+import java.util.stream.*;
+
+// Step 1: Create Employee class
+class Employee {
+    String name;
+    String department;
+    double salary;
+
+    // Constructor
+    Employee(String name, String department, double salary) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+}
+
+// Step 2: Main simulation
+class EmployeeRecordKeeper {
+    public static void main(String[] args) {
+        // Create an ArrayList of employees
+        List<Employee> employees = new ArrayList<>();
+
+        // Add some employees
+        employees.add(new Employee("Alice", "HR", 50000));
+        employees.add(new Employee("Bob", "IT", 60000));
+        employees.add(new Employee("Charlie", "Finance", 55000));
+        employees.add(new Employee("David", "IT", 65000));
+        employees.add(new Employee("Eve", "HR", 52000));
+
+        // Step 3: Filter employees of IT department using Streams
+        List<Employee> itEmployees = employees.stream()
+            .filter(emp -> emp.department.equals("IT"))
+            .collect(Collectors.toList());
+
+        // Step 4: Display the filtered employees
+        System.out.println("Employees in IT Department:");
+        for (Employee e : itEmployees) {
+            System.out.println(e.name + " - " + e.department + " - " + e.salary);
+        }
+    }
+}
