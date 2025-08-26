@@ -1,0 +1,27 @@
+class TrieNode {
+    Map<char, TrieNode> children;
+    boolean isEnd;
+    int popularity;
+}
+
+class Trie {
+    TrieNode root;
+
+    void insert(String word, int popularity) { ... }
+    List<String> searchPrefix(String prefix, int N) {
+        // DFS/BFS from prefix node
+        // collect words with popularity
+        // sort by popularity and return top N
+    }
+}
+
+// Example
+main() {
+    Trie trie = new Trie();
+    trie.insert("pizza hut", 50);
+    trie.insert("pizza point", 30);
+    trie.insert("pita bread", 70);
+
+    print(trie.searchPrefix("pi", 3));
+    // → pita bread, pizza hut, pizza point
+}

@@ -1,0 +1,11 @@
+Map<String, Map<LocalDate, List<Integer>>> data; // Zone → Day → Readings
+
+// Find peak per zone per day
+data.entrySet().stream()
+    .forEach(zoneEntry -> {
+        String zone = zoneEntry.getKey();
+        zoneEntry.getValue().forEach((day, readings) -> {
+            int peak = readings.stream().max().get();
+            print(zone + " | " + day + " | Peak: " + peak + "kW");
+        });
+    });

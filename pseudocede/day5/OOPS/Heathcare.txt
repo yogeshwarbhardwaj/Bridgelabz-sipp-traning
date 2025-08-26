@@ -1,0 +1,47 @@
+// Strategy Interface
+interface DiagnosisStrategy {
+    List<String> diagnose(List<String> symptoms);
+}
+
+// Rule-based implementation
+class RuleBasedDiagnosis implements DiagnosisStrategy {
+    List<String> diagnose(List<String> symptoms) {
+        if(symptoms.contains("fever") && symptoms.contains("cough"))
+            return ["Flu", "COVID-19"];
+        return ["Unknown"];
+    }
+}
+
+// AI-based implementation
+class AIBasedDiagnosis implements DiagnosisStrategy {
+    List<String> diagnose(List<String> symptoms) {
+        // AI model prediction (mocked here)
+        if(symptoms.contains("headache"))
+            return ["Migraine", "Vertigo"];
+        return ["Unknown"];
+    }
+}
+
+// Context class
+class DiagnosisContext {
+    private DiagnosisStrategy strategy;
+    void setStrategy(DiagnosisStrategy s) { this.strategy = s; }
+    List<String> executeDiagnosis(List<String> symptoms) {
+        return strategy.diagnose(symptoms);
+    }
+}
+
+// Usage
+main() {
+    DiagnosisContext ctx = new DiagnosisContext();
+
+    ctx.setStrategy(new RuleBasedDiagnosis());
+    print(ctx.executeDiagnosis(["fever", "cough", "fatigue"])); 
+    // → Flu, COVID-19
+
+    ctx.setStrategy(new AIBasedDiagnosis());
+    print(ctx.executeDiagnosis(["headache", "nausea", "dizziness"]));
+    // → Migraine, Vertigo
+
+    // Tomorrow → add GeneticPatternDiagnosis without touching old code
+}

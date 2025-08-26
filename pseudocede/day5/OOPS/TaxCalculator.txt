@@ -1,0 +1,48 @@
+// Tax Strategy
+interface TaxCalculator {
+    double calculate(double price);
+}
+class FoodTax implements TaxCalculator {
+    double calculate(double price) { return price * 0.05; }
+}
+class BeverageTax implements TaxCalculator {
+    double calculate(double price) { return price * 0.12; }
+}
+class ImportedTax implements TaxCalculator {
+    double calculate(double price) { return price * 0.05 + 100; } // customs duty
+}
+
+// Discount Strategy
+interface DiscountPolicy {
+    double apply(double total);
+}
+class NoDiscount implements DiscountPolicy {
+    double apply(double total) { return total; }
+}
+class FlatDiscount implements DiscountPolicy {
+    double apply(double total) { return total - 100; }
+}
+class PercentageDiscount implements DiscountPolicy {
+    double apply(double total) { return total * 0.9; } // 10% off
+}
+
+// Item class
+class Item {
+    String name;
+    double price;
+    TaxCalculator taxCalc;
+    Item(String n, double p, TaxCalculator t) { ... }
+    double finalPrice() { return price + taxCalc.calculate(price); }
+}
+
+// Billing
+class Bill {
+    List<Item> items;
+    DiscountPolicy discount;
+
+    double generateBill() {
+        double sum = 0;
+        for(Item i : items) sum += i.finalPrice();
+        return discount.apply(sum);
+    }
+}

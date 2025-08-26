@@ -1,0 +1,20 @@
+class Employee {
+    String name, dept;
+    int rating;
+    double salary;
+}
+
+// Step 1: Group by department
+Map<String, List<Employee>> grouped =
+    employees.stream().collect(Collectors.groupingBy(emp -> emp.dept));
+
+// Step 2: Bonus calculation
+grouped.forEach((dept, list) -> {
+    double pool = list.stream().mapToDouble(e -> e.salary).sum() * 0.10;
+    int totalRating = list.stream().mapToInt(e -> e.rating).sum();
+
+    list.forEach(e -> {
+        double share = (e.rating / (double) totalRating) * pool;
+        print(e.name + " in " + dept + " gets bonus: " + share);
+    });
+});
