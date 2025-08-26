@@ -1,0 +1,19 @@
+Graph zones
+Each node = zone
+Each edge = adjacency between zones
+Each node has crimeScore
+
+Function DFS(zone, visited, riskSum)
+    Mark zone as visited
+    riskSum = riskSum + zone.crimeScore
+    For each neighbor in zone.neighbors
+        If not visited[neighbor]
+            DFS(neighbor, visited, riskSum)
+
+Main
+    For each zone in zones
+        If not visited
+            riskClusterScore = 0
+            DFS(zone, visited, riskClusterScore)
+            If riskClusterScore > threshold
+                Print "High-risk cluster detected"

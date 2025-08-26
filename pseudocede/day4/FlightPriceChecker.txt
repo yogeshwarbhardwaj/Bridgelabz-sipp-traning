@@ -1,0 +1,14 @@
+Comparator compareFlights(f1, f2)
+    If f1.price != f2.price
+        return f1.price - f2.price
+    Else
+        return f1.duration - f2.duration
+
+Function mergeSort(flights)
+    If flights has 1 element
+        return flights
+    Split flights into left and right
+    leftSorted = mergeSort(left)
+    rightSorted = mergeSort(right)
+    return merge(leftSorted, rightSorted, compareFlights)
+ 

@@ -1,0 +1,25 @@
+Interface Rentable
+    Method rent()
+    Method returnVehicle()
+
+Abstract Class Vehicle implements Rentable
+    Variables: vehicleId, brand, rate
+
+Class Car extends Vehicle
+    Method rent()
+        Print "Car rented at rate"
+    Method returnVehicle()
+        Print "Car returned"
+
+Class Bike extends Vehicle
+    Method rent()
+        Print "Bike rented at rate"
+    Method returnVehicle()
+        Print "Bike returned"
+
+Class VehicleFactory
+    Method createVehicle(type)
+        If type == "car"
+            return new Car()
+        Else If type == "bike"
+            return new Bike()

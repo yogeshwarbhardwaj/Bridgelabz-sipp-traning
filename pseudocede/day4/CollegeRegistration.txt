@@ -1,0 +1,12 @@
+Map<Course, List<Student>> registrationMap
+
+Function registerStudent(course, student)
+    If course not in registrationMap
+        registrationMap[course] = new List
+    registrationMap[course].add(student)
+
+Function display()
+    For each course in registrationMap
+        Print course.name
+        For each student in registrationMap[course]
+            Print student.name

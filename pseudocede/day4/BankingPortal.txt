@@ -1,0 +1,20 @@
+Class Account
+    Variables: accountNumber, balance
+    Method deposit(amount)
+        balance = balance + amount
+    Method withdraw(amount)
+        // default withdraw (can be overridden)
+
+Class Saving extends Account
+    Method withdraw(amount)
+        If balance - amount < 1000
+            Print "Insufficient balance. Min balance 1000 required."
+        Else
+            balance = balance - amount
+
+Class Current extends Account
+    Method withdraw(amount)
+        If balance - amount < 0
+            Print "Overdraft not allowed."
+        Else
+            balance = balance - amount

@@ -1,0 +1,14 @@
+List<Transaction> transactions
+Each Transaction has: type, amount
+
+Function generateReport(transactions)
+    Map<String, Double> report
+
+    For each tx in transactions
+        If tx.type not in report
+            report[tx.type] = 0
+        report[tx.type] = report[tx.type] + tx.amount
+
+    Print "Transaction Summary"
+    For each entry in report
+        Print entry.key + " -> " + entry.value
