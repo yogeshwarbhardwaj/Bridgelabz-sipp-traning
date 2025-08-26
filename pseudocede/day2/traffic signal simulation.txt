@@ -1,0 +1,32 @@
+// Step 1: Create an enum to represent the traffic lights
+enum TrafficLight {
+    RED,
+    GREEN,
+    YELLOW
+}
+
+// Step 2: Make a class to simulate the traffic signal
+class TrafficSignal {
+    TrafficLight currentLight;
+
+    // Constructor - start with RED light
+    TrafficSignal() {
+        currentLight = TrafficLight.RED;
+    }
+
+    // Method to switch to next light based on current light
+    void changeLight() {
+        if (currentLight == TrafficLight.RED) {
+            currentLight = TrafficLight.GREEN;
+        }
+        else if (currentLight == TrafficLight.GREEN) {
+            currentLight = TrafficLight.YELLOW;
+        }
+        else if (currentLight == TrafficLight.YELLOW) {
+            currentLight = TrafficLight.RED;
+        }
+    }
+
+    // Method to display the current light
+    void showLight() {
+        print("Current Signal: " + currentLi

@@ -1,0 +1,26 @@
+Start
+Make class Customer
+    Has name, address, phone
+
+Make class Restaurant
+    Has name, location, menu
+
+Make class DeliveryBoy
+    Has name, id, phone
+
+Make class Order
+    Has:
+        Customer customer
+        Restaurant restaurant
+        DeliveryBoy deliveryBoy
+        List of items
+        totalPrice
+
+    Method placeOrder:
+        Print order details with customer, restaurant, delivery boy
+
+In main:
+    Create objects for Customer, Restaurant, DeliveryBoy
+    Create Order and link all objects
+    Call placeOrder
+End

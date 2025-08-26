@@ -1,0 +1,21 @@
+Start
+Interface Searchable
+    Method search(criteria)
+
+Interface Printable
+    Method printReport()
+
+Make class BloodTestReport implements Searchable, Printable
+    search(criteria) → return matching results
+    printReport() → print blood test details
+
+Make class XRayReport implements Searchable, Printable
+    search(criteria) → return matching results
+    printReport() → print X-ray details
+
+In main:
+    Create list of reports (BloodTestReport, XRayReport)
+    For each report:
+        Call search
+        Call printReport
+End

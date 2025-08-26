@@ -1,0 +1,21 @@
+Start
+Make generic class Transaction<T>
+    Has:
+        transactionId
+        amount
+        paymentMethod of type T
+
+    Method processPayment:
+        Print payment details
+
+Make classes:
+    UPI with upiId
+    Card with cardNumber
+    NetBanking with bankName, accountNumber
+
+In main:
+    Create Transaction<UPI>
+    Create Transaction<Card>
+    Create Transaction<NetBanking>
+    Call processPayment for each
+End

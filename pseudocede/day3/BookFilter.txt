@@ -1,0 +1,12 @@
+Start
+Make class Book
+    Has title, year, rating
+
+Create list of books
+
+Filter list:
+    Year > 2015
+    Rating > 4.5
+
+Collect and return the filtered list
+End

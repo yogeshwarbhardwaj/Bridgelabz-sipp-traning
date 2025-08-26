@@ -1,0 +1,22 @@
+Start
+Function solveMaze(maze, x, y):
+    If x,y is outside maze or is a wall
+        Return false
+    If x,y is goal
+        Return true
+    Mark x,y as visited
+
+    If solveMaze(move right) → return true
+    If solveMaze(move down) → return true
+    If solveMaze(move left) → return true
+    If solveMaze(move up) → return true
+
+    Unmark x,y (backtrack)
+    Return false
+End
+
+In main:
+    Call solveMaze from start position
+    If true → print "Path found"
+    Else → print "No path"
+End

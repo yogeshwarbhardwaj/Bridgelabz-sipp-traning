@@ -1,0 +1,22 @@
+Start
+Make class Patient
+    Has id, name, age, illness
+
+Create HashMap<id, Patient> patientMap
+
+Method addPatient(patient)
+    Put patient in map using patient.id
+
+Method getPatient(id)
+    Return patient from map
+
+Method updatePatient(id, updatedPatient)
+    Replace patient in map
+
+Method deletePatient(id)
+    Remove from map
+
+In main:
+    Add some patients
+    Retrieve, update, delete using methods
+End
