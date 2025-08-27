@@ -1,0 +1,42 @@
+// Class representing a Ticket
+class Ticket {
+    private String movieName;
+    private String seatNumber;
+    private double price;
+    private boolean isBooked;
+
+    // Constructor
+    Ticket(String movieName, String seatNumber, double price) {
+        this.movieName = movieName;
+        this.seatNumber = seatNumber;
+        this.price = price;
+        this.isBooked = false;
+    }
+
+    // Encapsulation: Getter & Setter methods
+    public String getMovieName() { return movieName; }
+    public String getSeatNumber() { return seatNumber; }
+    public double getPrice() { return price; }
+    public boolean getStatus() { return isBooked; }
+
+    public void bookTicket() { isBooked = true; }
+    public void cancelTicket() { isBooked = false; }
+}
+
+// Class representing a Theatre
+class Theatre {
+    private String name;
+    private List<Ticket> tickets;   // composition: Theatre "has" many tickets
+
+    Theatre(String name) {
+        this.name = name;
+        tickets = new ArrayList<>();
+    }
+
+    // Add a ticket (preloaded seats for movies)
+    public void addTicket(Ticket t) {
+        tickets.add(t);
+    }
+
+    // Issue a ticket (book seat if available)
+    public Ticket bookTicket(String movieName, String seatNumber) {

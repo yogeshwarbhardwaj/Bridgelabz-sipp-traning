@@ -1,0 +1,43 @@
+START
+
+DEFINE Students as a list of all students
+DEFINE Attendance[student][day] as a 2D table 
+   → Rows = students
+   → Columns = days in the month
+   → Each cell stores 'P' (Present) or 'A' (Absent)
+
+FUNCTION markAttendance(student, day, status):
+    Attendance[student][day] = status
+    PRINT "Attendance marked: " + student + " on Day " + day + " as " + status
+
+FUNCTION updateAttendance(student, day, newStatus):
+    Attendance[student][day] = newStatus
+    PRINT "Attendance updated: " + student + " on Day " + day + " changed to " + newStatus
+
+FUNCTION generateMonthlyReport(student, totalDays):
+    SET presentCount = 0
+    FOR day = 1 TO totalDays:
+        IF Attendance[student][day] == 'P':
+            presentCount = presentCount + 1
+    PRINT "Monthly Report → " + student + ": Present " + presentCount + " days, Absent " + (totalDays - presentCount) + " days."
+
+MAIN PROGRAM:
+    totalDays = 30
+    INITIALIZE Attendance table with all values = 'A'  // Assume absent until marked
+    
+    // Example Run
+    markAttendance(Student1, Day1, 'P')
+    markAttendance(Student1, Day2, 'P')
+    markAttendance(Student1, Day3, 'A')
+    markAttendance(Student1, Day4, 'P')
+    markAttendance(Student1, Day5, 'P')
+    markAttendance(Student1, Day6, 'P')
+    markAttendance(Student1, Day7, 'A')
+
+    // Teacher updates Day 3 after leave approval
+    updateAttendance(Student1, Day3, 'P')
+
+    // End of month report
+    generateMonthlyReport(Student1, totalDays)
+
+END

@@ -1,0 +1,67 @@
+// Base class for all types of users
+class User {
+    String username;
+    String password;
+
+    // Constructor
+    User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    // Common login method - can be overridden by subclasses
+    void login() {
+        System.out.println("Validating user credentials...");
+    }
+}
+
+// Student class extends User
+class Student extends User {
+    boolean isRegistered;   // whether student account exists
+    boolean isEnrolled;     // whether student enrolled in any course
+
+    Student(String username, String password, boolean isRegistered, boolean isEnrolled) {
+        super(username, password);   // call parent constructor
+        this.isRegistered = isRegistered;
+        this.isEnrolled = isEnrolled;
+    }
+
+    // Overriding login method
+    @Override
+    void login() {
+        if (isRegistered && isEnrolled) {
+            System.out.println("Student " + username + " logged in successfully.");
+            System.out.println("Showing available exams...");
+        } else {
+            System.out.println("Login failed! Student not registered or not enrolled in any course.");
+        }
+    }
+}
+
+// Admin class extends User
+class Admin extends User {
+    boolean hasPrivileges;  // check if user has admin rights
+
+    Admin(String username, String password, boolean hasPrivileges) {
+        super(username, password);
+        this.hasPrivileges = hasPrivileges;
+    }
+
+    // Overriding login method
+    @Override
+    void login() {
+        if (hasPrivileges) {
+            System.out.println("Admin " + username + " logged in successfully.");
+            System.out.println("Access granted to exam management tools...");
+        } else {
+            System.out.println("Login failed! Admin privileges required.");
+        }
+    }
+}
+
+// Main class to test
+class OnlineExamPortal {
+    public static void main(String[] args) {
+        // Example Student
+        User student1 = new Student("john123", "pass123", true, true);
+        student1.login();   // polymorphism: Stu

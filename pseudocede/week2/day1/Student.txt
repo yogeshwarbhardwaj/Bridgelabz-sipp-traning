@@ -1,0 +1,28 @@
+CLASS User
+    ATTRIBUTES: username, password
+    METHOD login()
+        PRINT "Validating credentials..."
+        RETURN true
+
+CLASS Student EXTENDS User
+    ATTRIBUTES: courseEnrolled
+    METHOD login()
+        IF validate(username, password) AND courseEnrolled = true
+            PRINT "Student logged in successfully. Show available exams."
+        ELSE
+            PRINT "Student login failed. Check credentials or enrollment."
+
+CLASS Admin EXTENDS User
+    ATTRIBUTES: adminPrivileges
+    METHOD login()
+        IF validate(username, password) AND adminPrivileges = true
+            PRINT "Admin logged in successfully. Show exam management tools."
+        ELSE
+            PRINT "Admin login failed. Unauthorized."
+
+MAIN:
+    CREATE studentUser WITH username="john123", password="1234", courseEnrolled=true
+    CALL studentUser.login()
+
+    CREATE adminUser WITH username="admin01", password="admin123", adminPrivileges=true
+    CALL adminUser.login()

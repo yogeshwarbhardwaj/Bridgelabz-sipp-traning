@@ -1,0 +1,106 @@
+// Node class → represents a bus stop
+class BusStop {
+    String name;         // name of the bus stop
+    BusStop next;        // pointer to next stop
+
+    // Constructor
+    BusStop(String stopName) {
+        this.name = stopName;
+        this.next = null;
+    }
+}
+
+// LinkedList to represent the Bus Route
+class BusRoute {
+    BusStop head;   // first stop in the route
+
+    // 1. Display the current route
+    void displayRoute() {
+        BusStop current = head;
+        while (current != null) {
+            print(current.name + " → ");
+            current = current.next;
+        }
+        print("END");
+    }
+
+    // 2. Insert a stop after a given stop
+    void insertAfter(String existingStop, String newStop) {
+        BusStop current = head;
+        while (current != null) {
+            if (current.name.equals(existingStop)) {
+                BusStop newNode = new BusStop(newStop);
+                newNode.next = current.next;
+                current.next = newNode;
+                return;
+            }
+            current = current.next;
+        }
+        print("Stop not found, cannot insert.");
+    }
+
+    // 3. Delete a stop
+    void deleteStop(String stopName) {
+        // if head itself is the stop to delete
+        if (head != null && head.name.equals(stopName)) {
+            head = head.next;
+            return;
+        }
+
+        BusStop current = head;
+        while (current != null && current.next != null) {
+            if (current.next.name.equals(stopName)) {
+                current.next = current.next.next;
+                return;
+            }
+            current = current.next;
+        }
+        print("Stop not found, cannot delete.");
+    }
+
+    // 4. Search a stop
+    boolean searchStop(String stopName) {
+        BusStop current = head;
+        while (current != null) {
+            if (current.name.equals(stopName)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+}
+
+// Demo class
+class BusRouteNavigator {
+    public static void main(String[] args) {
+        BusRoute route = new BusRoute();
+
+        // Initial route: Depot → Main Street → City Mall → Hospital → Airport
+        route.head = new BusStop("Depot");
+        route.head.next = new BusStop("Main Street");
+        route.head.next.next = new BusStop("City Mall");
+        route.head.next.next.next = new BusStop("Hospital");
+        route.head.next.next.next.next = new BusStop("Airport");
+
+        print("Initial Route:");
+        route.displayRoute();
+
+        // Insert University Stop after City Mall
+        route.insertAfter("City Mall", "University");
+        print("After inserting University:");
+        route.displayRoute();
+
+        // Delete Hospital
+        route.deleteStop("Hospital");
+        print("After deleting Hospital:");
+        route.displayRoute();
+
+        // Search for Airport
+        if (route.searchStop("Airport")) {
+            print("✅ Airport is still in the route.");
+        } else {
+            print("❌ Airport not found in the route.");
+        }
+    }
+}

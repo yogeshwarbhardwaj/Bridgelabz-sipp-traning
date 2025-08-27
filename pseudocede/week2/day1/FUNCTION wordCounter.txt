@@ -1,0 +1,17 @@
+FUNCTION wordCounter(paragraph)
+    CLEAN paragraph: remove punctuation, convert to lowercase
+    SPLIT paragraph into words
+    CREATE wordMap (Map<String, Integer>)
+
+    FOR each word in words
+        IF word in wordMap
+            wordMap[word]++
+        ELSE
+            wordMap[word] = 1
+
+    SORT wordMap by frequency (descending)
+    DISPLAY wordMap
+
+MAIN:
+    paragraph = "The news today is about the rise in technology trends."
+    CALL wordCounter(paragraph)
